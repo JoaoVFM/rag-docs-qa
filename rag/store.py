@@ -40,6 +40,8 @@ class VectorStore:
         return [(self.chunks[i], float(scores[i])) for i in top]
 
     def save(self, directory: str | Path) -> None:
+        if self.matrix is None:
+            raise ValueError("Cannot save an empty store")
         directory = Path(directory)
         directory.mkdir(parents=True, exist_ok=True)
         np.save(directory / "vectors.npy", self.matrix)

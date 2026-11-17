@@ -1,5 +1,6 @@
 import hashlib
 import re
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -7,6 +8,8 @@ import pytest
 from rag.chunking import chunk_text
 from rag.pipeline import answer, build_index
 from rag.store import VectorStore
+
+DOCS = Path(__file__).resolve().parent.parent / "data" / "docs"
 
 
 class FakeEmbedder:
@@ -60,7 +63,7 @@ def test_store_save_and_load(tmp_path):
 
 def test_end_to_end_retrieves_right_document():
     embedder = FakeEmbedder()
-    store = build_index("data/docs", embedder, chunk_size=300, overlap=50)
+    store = build_index(DOCS, embedder, chunk_size=300, overlap=50)
     captured = {}
 
     def fake_chat(messages):

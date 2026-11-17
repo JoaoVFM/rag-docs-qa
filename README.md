@@ -49,7 +49,7 @@ Para usar seus próprios documentos, coloque arquivos `.md` ou `.txt` em uma pas
 pytest
 ```
 
-Os testes cobrem chunking, vector store (busca, salvar/carregar) e o fluxo completo de recuperação, usando um embedder falso para rodar sem Ollama.
+Os testes cobrem chunking, vector store (busca, salvar/carregar), o fluxo completo de recuperação (com embedder falso) e os wrappers do Ollama (com um módulo `ollama` falso), então rodam sem servidor.
 
 ## Estrutura
 
